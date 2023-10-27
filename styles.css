@@ -1,0 +1,174 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #313131;
+    align-items: center;
+    border: none;
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    background-color: white;
+}
+/*Header styles*/
+.navbar-style{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;     
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.header-style{
+    display: flex; 
+    flex-direction: column;
+    background-color: grey;
+    color: white;
+}
+.search-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*Main styles*/
+.search-output{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 20px;
+}
+.film-card{
+    width: 462px;
+    height: 197px;
+    border-bottom: 1px solid #6B7280;
+    border-radius: 1px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.film-data{
+    display: flex;
+    flex-direction: row;
+    height: 148px;
+}
+
+.film-poster{
+    padding: 0;
+    margin: 0 15px 0 0 ;
+    display: flex;
+    width: 99px;
+    height: 148px;
+    background-color: bisque;
+}
+
+.film-aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 342px;
+    height: auto;
+}
+.header-film{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.header-film > h3 {
+    color: #111827;
+    font-size: 18px;
+}
+
+.rating-container{
+    height: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size:12px;
+}
+
+.star-icon{
+    font-size:90%;
+    color:orange;
+}
+
+.rating-container > p{
+    color:#111827;
+    font-size: 12px;
+
+}
+
+
+.subheader-film{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    text-align: center;
+}
+
+.film-title, .star-icon, .film-rating
+ {
+    padding-left: 4px;
+    padding-right: 2px;
+    text-align: center;
+}
+.btn-add{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background-color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.span-plus{
+    position: relative;
+    font-size: 100%;
+    font-weight: semibold;
+    color:white;
+    border: none;
+   
+} 
+.circle{
+    width: 16px;
+    height: 16px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.btn-add > p{
+    padding-left: 5px;
+}
+
+.film-desc {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    color: #6B7280;
+}
+
