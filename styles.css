@@ -82,7 +82,7 @@ a {
 }
 
 /*Main styles*/
-.search-output{
+.search-output, .watchlist-output{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -180,7 +180,7 @@ a {
     padding-right: 2px;
     text-align: center;
 }
-.btn-add{
+.btn-add, .btn-delete{
     border: none;
     margin: 0;
     padding:0;
@@ -202,7 +202,12 @@ a {
     color:white;
 }
 
+
 .btn-add > p{
+    padding-left: 5px;
+    margin: 0;
+}
+.btn-delete > p{
     padding-left: 5px;
     margin: 0;
 }
@@ -218,3 +223,42 @@ a {
     margin: 0;
 }
 
+.no-items-in-watchlist-view{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.no-items-in-watchlist-view > p{
+   padding-left: 8px;
+}
+
+.plus{
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.plus-small{
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+
+.initalView-search {
+    margin-top: 100px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+}
+
+
+.initalView-search > .film-icon{
+    width: 80px;
+    height: 80px;
+}
