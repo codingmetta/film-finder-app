@@ -4,19 +4,8 @@ const outputEl = document.body.querySelector('.search-output');
 
 const baseURL = `http://www.omdbapi.com/?apikey=78814a4b
 `;
-let filmDummy =  {
-    title: "nice day",
-    img: "#",
-    rating: "4",
-    duration: '120',
-    desc: "kslenfsnfelkwelfnkwfwlefknewklfewfewnkwelknflfknwenfwkelnkwfenklwfe",
-    genres: "comedy, drama"
-}
-
-let resArr = [];
 let filmsArr = [];
-
-
+renderFilms(filmsArr);
 document.getElementById('search-form').addEventListener('submit', searchFilm);
 
 function searchFilm(e) {
@@ -28,46 +17,74 @@ function searchFilm(e) {
     //request object für API call erstellen
 
     //querystring GET request an web api senden 
-
+    /**/
     fetch(`http://www.omdbapi.com/?apikey=78814a4b&s=blade&r=json`)
         .then(res => res.json())
         .then(data => {
-            resArr = data.Search;
-        });
-    
-        for (let res of resArr) {
-            console.log(res.Title);
-        }
+            window.localStorage.clear(); 
+            window.localStorage.setItem("results", JSON.stringify(data.Search));
+        })
+    let resArr =JSON.parse(window.localStorage.getItem("results"));
+    //console.log(resArr);
 
-    renderFilms();
+    for (let res of resArr) {
+        let tempTitle = res.Title.replace(/\s/g, "+");
+   
+       fetch(`http://www.omdbapi.com/?apikey=78814a4b&t=${tempTitle}&r=json`)
+       .then(res => res.json())
+       .then(film => {
+        if(window.localStorage.getItem("films") !== null
+        ) {
+         window.localStorage.removeItem("films")
+     }
+        //console.log(film);
+           let filmData =  {
+            title: film.Title,
+            img: film.Poster,
+            rating: film.imdbRating,
+            duration: film.Runtime,
+            desc: film.Plot,
+            genres: film.Genre
+            };
+            filmsArr.push(filmData);
+            console.log('izzzz:' + filmsArr);
+            
+            window.localStorage.setItem("films", JSON.stringify(filmsArr));
+        })
+    }
+    let arr =JSON.parse(window.localStorage.getItem("films"));
+    renderFilms(arr)
 
 }
-
-function renderFilms(){
+function renderFilms(filmsArr){
     let html = '';
     if(filmsArr.length === 0){
         outputEl.innerHTML= ''; 
-        html = `<div> Start Exploring</div>`
+        html = `<div> Start Exploring </div>`
     } else {
- 
-        for (let film of filmsArr) {
+        outputEl.innerHTML= ''; 
+
+        //console.log(filmsArr);
+
+        for (let i = 0;  i < filmsArr.length; i++) {
+
             html +=  `
         <article class="film-container">
         <div class="film-data">
             <figure class="film-poster">
-                <img src="${film.img}" alt="" />
+                <img src=${filmsArr[i].img} alt="" />
             </figure>
             <div class="film-aside">
                 <div class="header-film">
-                    <h3 class="film-title">${film.title}</h3>
+                    <h3 class="film-title">${filmsArr[i].title}</h3>
                     <div class="rating-container">
                         <span class="star-icon">&starf; </span>
-                        <p class="film-rating">${film.rating}</p>
+                        <p class="film-rating">${filmsArr[i].rating}</p>
                     </div>
                 </div>
                 <div class="subheader-film">
-                    <p class="film-duration"> ${film.duration} min</p>
-                    <p class="film-genre">${film.genres}</p>
+                    <p class="film-duration">${filmsArr[i].duration}</p>
+                    <p class="film-genre">${filmsArr[i].genres}</p>
     
                     <button class="btn-add">
                         <div class="circle">
@@ -77,7 +94,7 @@ function renderFilms(){
                     </button>
                 </div>
                 <div class="body-film">
-                    <p class="film-desc">${film.desc} </p>
+                    <p class="film-desc">${filmsArr[i].desc} </p>
                 </div>
             </div>
         </div>
