@@ -262,3 +262,12 @@ a {
     width: 80px;
     height: 80px;
 }
+
+.no-search-results{
+    color: grey;
+    font-size: 18px;
+    width: 60%;
+    text-align: center;
+    font-weight: bold;
+    margin-top:120px;
+}

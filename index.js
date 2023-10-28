@@ -1,4 +1,3 @@
-
 import {renderFilms} from './Helper.js';
 
 const outputEl = document.body.querySelector('.search-output');
@@ -18,15 +17,18 @@ document.getElementById('search-form').addEventListener('submit', searchFilm);
 
 
 async function getSearchRes(queryStr) {
-    const res = await fetch(`${baseURL}&s=${queryStr}&r=json`)
-    const data = await res.json()
-    resArr = data.Search;
-
-    for (let res of resArr) {
-        let tempTitle = res.Title.replace(/\s/g, "+");
-        res.Title = tempTitle;
+    try {
+        const res = await fetch(`${baseURL}&s=${queryStr}&r=json`)
+        const data = await res.json()
+        resArr = data.Search;
+    
+        for (let res of resArr) {
+            let tempTitle = res.Title.replace(/\s/g, "+");
+            res.Title = tempTitle;
+        }
+    } catch(e){
+        outputEl.innerHTML = `<div class="no-search-results">Oh! It seems like, what you're looking for does not exist :( </div>`; 
     }
-    //console.log('modded array' + resArr[0].Title);
 }
 
 async function getFilm(title) {
@@ -48,12 +50,13 @@ async function initFilmsArr() {
     }
 }
 
+/*To do : Promise States( PENDING, REJECTED) noch implementieren*/
 async function searchFilm(e) {
     e.preventDefault();
-    cleanup();
-
     //querystring auslesen
     let queryStr = inputEl.value;
+
+    cleanup();
 
     //querystring GET request an web api senden 
     const initSearch = await getSearchRes(queryStr);
@@ -67,6 +70,7 @@ function cleanup() {
     resArr = [];
     filmsArr = [];
     outputEl.innerHTML = '';
+    inputEl.value= '';
 }
 
 
