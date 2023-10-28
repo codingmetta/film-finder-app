@@ -109,16 +109,21 @@ a {
     height: 148px;
     background-color: bisque;
 }
+.film-poster > img {
+    object-fit: cover;
+    width: 99px;
+    height: 148px;
+}
 
 .film-aside{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:  space-around;
     width: 342px;
     height: auto;
 }
 .header-film{
-    width: 50%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -132,6 +137,11 @@ a {
     font-size: 18px;
     margin: 0;
     padding: 0;
+    overflow : hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1; 
+    -webkit-box-orient: vertical;
 }
 
 .rating-container{
