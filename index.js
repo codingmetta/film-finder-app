@@ -1,11 +1,20 @@
 import {renderFilms} from './Helper.js';
 
+/*
+*   INSERT YOUR API KEY HERE:
+*       
+*   const YOUR_API_KEY = {*YOUR_API_KEY*};
+*/
+
+
+const YOUR_API_KEY = '';
+
+
+const baseURL = `http://www.omdbapi.com/?apikey=${YOUR_API_KEY}`;
+
 const outputEl = document.body.querySelector('.search-output');
 const inputEl = document.getElementById('site-search');
 
-
-const baseURL = `http://www.omdbapi.com/?apikey=78814a4b
-`;
 let filmsArr = [];
 let resArr = [];
 let isSearchView = true;
@@ -62,7 +71,7 @@ async function searchFilm(e) {
     const initSearch = await getSearchRes(queryStr);
     const films = await initFilmsArr();
     outputEl.innerHTML= renderFilms(filmsArr, isSearchView);
-    registerBtnAddEventHandlers();
+    registerBtnAddEventHandlers(); 
 }
 
 
