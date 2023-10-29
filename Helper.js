@@ -1,6 +1,7 @@
 function newFilmItem(img, title, rating, duration, genres, desc, isSearchView) {
 
     let btnHTML = ``;
+
     if (isSearchView) {
         btnHTML =
         `                    
@@ -70,8 +71,9 @@ function newFilmItem(img, title, rating, duration, genres, desc, isSearchView) {
 }
 
 function renderFilms(filmsArr, isSearchView) {
+    let size = filmsArr.length;
     let html = '';
-    if (filmsArr.length <= 0 && isSearchView) {
+    if (size <= 0 && isSearchView) {
         html = 
         `<div class="initalView-search">
             <svg 
@@ -88,7 +90,7 @@ function renderFilms(filmsArr, isSearchView) {
             </svg>
             <p>Start Exploring</p>
         </div>`
-    } else if (filmsArr.length <= 0 && !isSearchView) {
+    } else if (size <= 0 && !isSearchView) {
         html = 
         `<div class="no-items-in-watchlist-view"> 
             <svg 
@@ -106,7 +108,7 @@ function renderFilms(filmsArr, isSearchView) {
             <p>Let's add some movies!</p>
         </div>`
     } else {
-        for (let i = 0; i < filmsArr.length; i++) {
+        for (let i = 0; i < size; i++) {
             html += newFilmItem(filmsArr[i].img,
                 filmsArr[i].title,
                 filmsArr[i].rating,

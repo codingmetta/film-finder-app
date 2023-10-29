@@ -1,17 +1,10 @@
 import { renderFilms, checkOutputEl } from './Helper.js';
 
-
-/************************************************/
-/*
-*   INSERT YOUR API KEY LIKE THIS RIGHT BELOW:
-*       
-*    -> const YOUR_API_KEY = {*YOUR_API_KEY*};
-*/
-
-const YOUR_API_KEY = '';
 /***********************************************/
-
-
+/* INSERT YOUR API KEY LIKE THIS RIGHT BELOW:
+*  const YOUR_API_KEY = {*YOUR_API_KEY*};*/
+const YOUR_API_KEY = '78814a4b';
+/***********************************************/
 
 
 const baseURL = `http://www.omdbapi.com/?apikey=${YOUR_API_KEY}`;
