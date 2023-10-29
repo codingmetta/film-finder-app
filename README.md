@@ -1,20 +1,20 @@
 # Project Overview
 
-It's an Watchlist App, that let's you search for every Film and Series available and lets you add them to your personal list.
+Watchlist is an Web-App, that let's you search for every Film and Series available and lets you add them to your personal list.
 
 # Installation Instructions
 
 
-## Get Access to the API's that are necessary for the project
+## Get Access to the OMDB API
 
-OMDB API: 
-    - Visit http://www.omdbapi.com/ and register yourself 
-    - Copy your personal API Key from your Account Dashboard
-    - Open "index.js" and insert your API key right here:
-        -> const YOUR_API_KEY = {*YOUR_API_KEY*};
+Access to the OMDB API is necessary, if you want the project to work.
+* Visit [OMDB API](http://www.omdbapi.com/) and register a personal account
+* Copy your personal API Key from your Account Dashboard
+* Open the file `index.js` and insert your API key right there:
+    * `const YOUR_API_KEY = {*YOUR_API_KEY*};`
 
 
-The project is now ready to run on localhost.
+The project is now ready to run on your local server.
 
 
 # Usage Guide
