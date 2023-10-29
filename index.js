@@ -1,28 +1,35 @@
-import {renderFilms} from './Helper.js';
+import { renderFilms, checkOutputEl } from './Helper.js';
 
+
+/************************************************/
 /*
-*   INSERT YOUR API KEY HERE:
+*   INSERT YOUR API KEY LIKE THIS RIGHT BELOW:
 *       
-*   const YOUR_API_KEY = {*YOUR_API_KEY*};
+*    -> const YOUR_API_KEY = {*YOUR_API_KEY*};
 */
 
+const YOUR_API_KEY = '78814a4b';
+/***********************************************/
 
-const YOUR_API_KEY = '';
+
 
 
 const baseURL = `http://www.omdbapi.com/?apikey=${YOUR_API_KEY}`;
-
 const outputEl = document.body.querySelector('.search-output');
 const inputEl = document.getElementById('site-search');
 
 let filmsArr = [];
 let resArr = [];
-let isSearchView = true;
+let isSearchView = checkOutputEl();
 
-cleanup();
-outputEl.innerHTML= renderFilms(filmsArr, isSearchView);
+setup();
 
-document.getElementById('search-form').addEventListener('submit', searchFilm);
+
+function setup() {
+    cleanup();
+    outputEl.innerHTML = renderFilms(filmsArr, isSearchView);
+    document.getElementById('search-form').addEventListener('submit', searchFilm);
+}
 
 
 async function getSearchRes(queryStr) {
@@ -30,13 +37,13 @@ async function getSearchRes(queryStr) {
         const res = await fetch(`${baseURL}&s=${queryStr}&r=json`)
         const data = await res.json()
         resArr = data.Search;
-    
+
         for (let res of resArr) {
             let tempTitle = res.Title.replace(/\s/g, "+");
             res.Title = tempTitle;
         }
-    } catch(e){
-        outputEl.innerHTML = `<div class="no-search-results">Oh! It seems like, what you're looking for does not exist :( </div>`; 
+    } catch (e) {
+        outputEl.innerHTML = `<div class="no-search-results">Oh! It seems like, what you're looking for does not exist :( </div>`;
     }
 }
 
@@ -62,16 +69,14 @@ async function initFilmsArr() {
 /*To do : Promise States( PENDING, REJECTED) noch implementieren*/
 async function searchFilm(e) {
     e.preventDefault();
-    //querystring auslesen
-    let queryStr = inputEl.value;
 
+    let currentQuery = inputEl.value;
     cleanup();
 
-    //querystring GET request an web api senden 
-    const initSearch = await getSearchRes(queryStr);
-    const films = await initFilmsArr();
-    outputEl.innerHTML= renderFilms(filmsArr, isSearchView);
-    registerBtnAddEventHandlers(); 
+    await getSearchRes(currentQuery);
+    await initFilmsArr();
+    outputEl.innerHTML = renderFilms(filmsArr, isSearchView);
+    registerBtnAddEventHandlers();
 }
 
 
@@ -79,11 +84,11 @@ function cleanup() {
     resArr = [];
     filmsArr = [];
     outputEl.innerHTML = '';
-    inputEl.value= '';
+    inputEl.value = '';
 }
 
 
-function registerBtnAddEventHandlers(){
+function registerBtnAddEventHandlers() {
     const allAddBtn = document.body.querySelectorAll('.btn-add');
 
     allAddBtn.forEach((value, index) => {
