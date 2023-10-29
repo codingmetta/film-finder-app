@@ -8,7 +8,7 @@ import { renderFilms, checkOutputEl } from './Helper.js';
 *    -> const YOUR_API_KEY = {*YOUR_API_KEY*};
 */
 
-const YOUR_API_KEY = '78814a4b';
+const YOUR_API_KEY = '';
 /***********************************************/
 
 
